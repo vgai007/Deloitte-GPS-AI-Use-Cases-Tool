@@ -30,10 +30,12 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h1 className="text-2xl font-bold text-foreground">
-                AI Use Cases Dashboard
+                Deloitte GPS AI Use Cases Tool
               </h1>
               <p className="text-sm text-muted-foreground mt-0.5">
-                Explore {useCases.length} AI applications across government sectors
+                Explore, Define, Prioritize AI Use Cases
+                {/* Explore {useCases.length} AI applications across government
+                sectors */}
               </p>
             </div>
             <SectorFilter
@@ -95,7 +97,8 @@ const Index = () => {
                     Select a Use Case
                   </h3>
                   <p className="text-sm text-muted-foreground max-w-[240px]">
-                    Click on any use case from the list or matrix to view its details
+                    Click on any use case from the list or matrix to view its
+                    details
                   </p>
                 </div>
               </div>
