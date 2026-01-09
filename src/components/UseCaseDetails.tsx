@@ -1,5 +1,14 @@
 import { UseCase } from "@/data/useCases";
-import { X, Clock, Zap, Target, Database, Building2, ChartBar } from "lucide-react";
+import {
+  X,
+  Clock,
+  Zap,
+  Target,
+  Database,
+  Building2,
+  ChartBar,
+  DollarSign,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -11,20 +20,29 @@ interface UseCaseDetailsProps {
 export function UseCaseDetails({ useCase, onClose }: UseCaseDetailsProps) {
   const getComplexityColor = (complexity: string) => {
     switch (complexity) {
-      case 'Low': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
-      case 'Medium': return 'bg-amber-100 text-amber-800 border-amber-200';
-      case 'High': return 'bg-red-100 text-red-800 border-red-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      case "Low":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      case "Medium":
+        return "bg-amber-100 text-amber-800 border-amber-200";
+      case "High":
+        return "bg-red-100 text-red-800 border-red-200";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
   };
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
-      case 'Low': return 'bg-slate-100 text-slate-700 border-slate-200';
-      case 'Medium': return 'bg-blue-100 text-blue-800 border-blue-200';
-      case 'High': return 'bg-emerald-100 text-emerald-800 border-emerald-200';
-      case 'Very High': return 'bg-emerald-200 text-emerald-900 border-emerald-300';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      case "Low":
+        return "bg-slate-100 text-slate-700 border-slate-200";
+      case "Medium":
+        return "bg-blue-100 text-blue-800 border-blue-200";
+      case "High":
+        return "bg-emerald-100 text-emerald-800 border-emerald-200";
+      case "Very High":
+        return "bg-emerald-200 text-emerald-900 border-emerald-300";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
   };
 
@@ -64,7 +82,11 @@ export function UseCaseDetails({ useCase, onClose }: UseCaseDetailsProps) {
                 <Zap className="w-4 h-4" />
                 <span className="text-xs font-medium">Complexity</span>
               </div>
-              <Badge className={`${getComplexityColor(useCase.implementationComplexity)} border`}>
+              <Badge
+                className={`${getComplexityColor(
+                  useCase.implementationComplexity
+                )} border`}
+              >
                 {useCase.implementationComplexity}
               </Badge>
             </div>
@@ -161,7 +183,7 @@ export function UseCaseDetails({ useCase, onClose }: UseCaseDetailsProps) {
                 Solution Providers
               </h3>
               <div className="flex flex-wrap gap-2">
-                {useCase.solutionProviders.split(', ').map((provider, idx) => (
+                {useCase.solutionProviders.split(", ").map((provider, idx) => (
                   <Badge key={idx} variant="outline" className="text-xs">
                     {provider}
                   </Badge>
@@ -170,10 +192,27 @@ export function UseCaseDetails({ useCase, onClose }: UseCaseDetailsProps) {
             </div>
           )}
 
+          {/* Estimated Cost */}
+          <div className="bg-accent/10 rounded-lg p-4 border border-accent/20">
+            <h3 className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
+              <DollarSign className="w-4 h-4 text-accent" />
+              Estimated Cost
+            </h3>
+            <p className="text-lg font-bold text-accent">
+              $
+              {useCase.cost.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </p>
+          </div>
+
           {/* Type of Solution */}
           <div className="pt-4 border-t border-border">
             <span className="text-xs text-muted-foreground">Type: </span>
-            <span className="text-xs font-medium text-foreground">{useCase.typeOfSolution}</span>
+            <span className="text-xs font-medium text-foreground">
+              {useCase.typeOfSolution}
+            </span>
           </div>
         </div>
       </ScrollArea>
